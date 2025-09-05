@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Maa Ladies Tailor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-pink: #f8d7da;
+            --light-pink: #f9eef0;
+            --dark-pink: #d8a1b6;
+            --purple: #b28bcf;
+            --pastel-purple: #e6e6fa;
+            --gold: #d4af37;
+            --dark-text: #4a3c3c;
+            --light-text: #7c6f6f;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: var(--light-pink);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(178, 139, 207, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--purple));
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-btn {
+            background: var(--white);
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-left: 10px;
+        }
+
+        .logo-icon {
+            color: var(--gold);
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--purple);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--purple);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--pastel-purple);
+            padding: 15px 0;
+            margin-top: 80px;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-link {
+            text-decoration: none;
+            color: var(--purple);
+            font-weight: 500;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 10px;
+            color: var(--purple);
+        }
+
+        .breadcrumb-current {
+            color: var(--dark-text);
+        }
+
+        /* Gallery Hero */
+        .gallery-hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(248, 215, 218, 0.8)), url('https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-4.0.3') center/cover no-repeat;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .gallery-hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--purple);
+        }
+
+        /* Gallery Filter */
+        .gallery-filter {
+            background-color: var(--white);
+            padding: 30px 0;
+            border-radius: 30px;
+            margin-top: 40px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: var(--light-pink);
+            color: var(--dark-text);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(178, 139, 207, 0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-category {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--pastel-purple);
+            border-radius: 30px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-text {
+            color: var(--light-text);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--purple);
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.2;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 60px 0 30px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-pink);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            color: var(--purple);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .gallery-hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background: var(--white);
+                width: 100%;
+                flex-direction: column;
+                padding: 30px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .gallery-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-hero {
+                padding: 80px 0;
+            }
+            
+            .gallery-hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .filter-buttons {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Hindi Language Support */
+        .hindi {
+            display: none;
+        }
+
+        .language-hindi .hindi {
+            display: block;
+        }
+
+        .language-hindi .english {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn" id="languageToggle">हिंदी</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-vest logo-icon"></i>
+                <span class="logo-text">Maa Ladies Tailor</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="index.html" class="breadcrumb-link english">Home</a>
+            <a href="index.html" class="breadcrumb-link hindi">होम</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current english">Gallery</span>
+            <span class="breadcrumb-current hindi">गैलरी</span>
+        </div>
+    </div>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1 class="gallery-hero-title english">Our Creations</h1>
+            <h1 class="gallery-hero-title hindi">हमारी रचनाएं</h1>
+            
+            <p class="hero-subtitle english">Browse through our collection of beautifully tailored garments</p>
+            <p class="hero-subtitle hindi">खूबसूरती से तैयार किए गए परिधानों के हमारे संग्रह को ब्राउज़ करें</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="english">All</span>
+                    <span class="hindi">सभी</span>
+                </button>
+                <button class="filter-btn" data-filter="blouse">
+                    <span class="english">Blouses</span>
+                    <span class="hindi">ब्लाउज</span>
+                </button>
+                <button class="filter-btn" data-filter="lehenga">
+                    <span class="english">Lehengas</span>
+                    <span class="hindi">लेहंगा</span>
+                </button>
+                <button class="filter-btn" data-filter="suit">
+                    <span class="english">Salwar Suits</span>
+                    <span class="hindi">सलवार सूट</span>
+                </button>
+                <button class="filter-btn" data-filter="saree">
+                    <span class="english">Sarees</span>
+                    <span class="hindi">साड़ी</span>
+                </button>
+                <button class="filter-btn" data-filter="gown">
+                    <span class="english">Gowns</span>
+                    <span class="hindi">गाउन</span>
+                </button>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Blouse Items -->
+                <div class="gallery-item" data-category="blouse">
+                    <img src="https://asset.rajarani.shop/product/20250306/1741264331-301317002.jpeg?class=thumbx" alt="Designer Blouse" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Designer Blouse</h3>
+                        <h3 class="gallery-title hindi">डिजाइनर ब्लाउज</h3>
+                        <span class="gallery-category english">Blouse</span>
+                        <span class="gallery-category hindi">ब्लाउज</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="blouse">
+                    <img src="data:image/jpeg;base64,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" alt="Traditional Blouse" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Traditional Blouse</h3>
+                        <h3 class="gallery-title hindi">पारंपरिक ब्लाउज</h3>
+                        <span class="gallery-category english">Blouse</span>
+                        <span class="gallery-category hindi">ब्लाउज</span>
+                    </div>
+                </div>
+                
+                <!-- Lehenga Items -->
+                <div class="gallery-item" data-category="lehenga">
+                    <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3" alt="Bridal Lehenga" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Bridal Lehenga</h3>
+                        <h3 class="gallery-title hindi">ब्राइडल लहंगा</h3>
+                        <span class="gallery-category english">Lehenga</span>
+                        <span class="gallery-category hindi">लेहंगा</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="lehenga">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGgM455y4qgJGblQio4rNF-8-kCzFeS1xi3Q&s" alt="Party Lehenga" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Party Lehenga</h3>
+                        <h3 class="gallery-title hindi">पार्टी लहंगा</h3>
+                        <span class="gallery-category english">Lehenga</span>
+                        <span class="gallery-category hindi">लेहंगा</span>
+                    </div>
+                </div>
+                
+                <!-- Salwar Suit Items -->
+                <div class="gallery-item" data-category="suit">
+                    <img src="/photoss/shahenaz-india-kN3tHdXDDrs-unsplash.jpg" alt="Designer Salwar Suit" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Designer Salwar Suit</h3>
+                        <h3 class="gallery-title hindi">डिजाइनर सलवार सूट</h3>
+                        <span class="gallery-category english">Salwar Suit</span>
+                        <span class="gallery-category hindi">सलवार सूट</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="suit">
+                    <img src="https://www.nicepng.com/png/detail/364-3649250_anarkali-dresses-for-women.png" alt="Anarkali Suit" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Anarkali Suit</h3>
+                        <h3 class="gallery-title hindi">अनारकली सूट</h3>
+                        <span class="gallery-category english">Salwar Suit</span>
+                        <span class="gallery-category hindi">सलवार सूट</span>
+                    </div>
+                </div>
+                
+                <!-- Saree Items -->
+                <div class="gallery-item" data-category="saree">
+                    <img src="https://media.istockphoto.com/id/2229530636/photo/folded-dark-pink-banarasi-silk-saree-with-intricate-golden-zari-floral-border-placed-on-a.jpg?s=612x612&w=0&k=20&c=G0U_nmvVFnY2nrMx32vmc69Sw26qzTZDXJRzpCeeFzA=" alt="Banarasi Saree" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Banarasi Saree</h3>
+                        <h3 class="gallery-title hindi">बनारसी साड़ी</h3>
+                        <span class="gallery-category english">Saree</span>
+                        <span class="gallery-category hindi">साड़ी</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="saree">
+                    <img src="/photoss/horitoki-ltd-dCuCMZ9XnHg-unsplash.jpg" alt="Silk Saree" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Silk Saree</h3>
+                        <h3 class="gallery-title hindi">सिल्क साड़ी</h3>
+                        <span class="gallery-category english">Saree</span>
+                        <span class="gallery-category hindi">साड़ी</span>
+                    </div>
+                </div>
+                
+                <!-- Gown Items -->
+                <div class="gallery-item" data-category="gown">
+                    <img src="https://e7.pngegg.com/pngimages/757/605/png-clipart-dress-dress.png" alt="Evening Gown" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Evening Gown</h3>
+                        <h3 class="gallery-title hindi">इवनिंग गाउन</h3>
+                        <span class="gallery-category english">Gown</span>
+                        <span class="gallery-category hindi">गाउन</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="gown">
+                    <img src="https://img.freepik.com/premium-psd/elegant-indian-bridal-lehenga-isolated-transparent-background-png_1119646-2217.jpg" alt="Bridal Gown" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Bridal Gown</h3>
+                        <h3 class="gallery-title hindi">ब्राइडल गाउन</h3>
+                        <span class="gallery-category english">Gown</span>
+                        <span class="gallery-category hindi">गाउन</span>
+                    </div>
+                </div>
+                
+                <!-- Additional Items -->
+                <div class="gallery-item" data-category="blouse">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREg5TXrDT3tAMDCZ-hJbSFUHyqSwolR346Xg&s" alt="Embroidered Blouse" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Embroidered Blouse</h3>
+                        <h3 class="gallery-title hindi">कढ़ाई वाला ब्लाउज</h3>
+                        <span class="gallery-category english">Blouse</span>
+                        <span class="gallery-category hindi">ब्लाउज</span>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="lehenga">
+                    <img src="https://kshkin.com/wp-content/uploads/2023/01/vlcsnap-5716-12-25-21h44m31s775.png" alt="Designer Lehenga" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title english">Designer Lehenga</h3>
+                        <h3 class="gallery-title hindi">डिजाइनर लहंगा</h3>
+                        <span class="gallery-category english">Lehenga</span>
+                        <span class="gallery-category hindi">लेहंगा</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title english">Client Experiences</h2>
+            <h2 class="section-title hindi">ग्राहक अनुभव</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text english">"The blouse Maa Tailor created for my wedding was absolutely stunning. The fit was perfect and the embroidery work was exquisite."</p>
+                    <p class="testimonial-text hindi">"मेरी शादी के लिए माँ टेलर द्वारा बनाया गया ब्लाउज बिल्कुल लुभावना था। फिट बिल्कुल सही था और कढ़ाई का काम उत्कृष्ट था।"</p>
+                    <div class="testimonial-author">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRtNd8TSi0RwEk6HAwjVNymYGiyk43tPRrEw&s" alt="Client" class="testimonial-avatar">
+                        <div>
+                            <h4 class="testimonial-name">Priya Mehta</h4>
+                            <p class="testimonial-role english">Bride</p>
+                            <p class="testimonial-role hindi">दुल्हन</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text english">"I've been getting all my suits stitched from Maa Tailor for the past 5 years. Their consistency and attention to detail is remarkable."</p>
+                    <p class="testimonial-text hindi">"मैं पिछले 5 साल से अपने सभी सूट माँ टेलर से सिलवा रही हूं। उनकी स्थिरता और विवरण पर ध्यान उल्लेखनीय है।"</p>
+                    <div class="testimonial-author">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32yWOaPZbClPB4bMln2OUpNQjeYOiid_2Ug&s" alt="Client" class="testimonial-avatar">
+                        <div>
+                            <h4 class="testimonial-name">Neha Sharma</h4>
+                            <p class="testimonial-role english">Regular Client</p>
+                            <p class="testimonial-role hindi">नियमित ग्राहक</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text english">"The alterations they did on my mother's old saree brought new life to it. It looks like a brand new designer outfit now!"</p>
+                    <p class="testimonial-text hindi">"उन्होंने मेरी माँ की पुरानी साड़ी पर जो परिवर्तन किए, उसने उसमें नया जीवन ला दिया। अब यह एक बिल्कुल नए डिजाइनर आउटफिट जैसी लगती है!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1581349437898-cebbe9831942?ixlib=rb-4.0.3" alt="Client" class="testimonial-avatar">
+                        <div>
+                            <h4 class="testimonial-name">Ananya Patel</h4>
+                            <p class="testimonial-role english">Satisfied Customer</p>
+                            <p class="testimonial-role hindi">संतुष्ट ग्राहक</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="english">Maa Ladies Tailor</h3>
+                    <h3 class="hindi">माँ लेडीज टेलर</h3>
+                    <p class="english">Creating beautiful garments for elegant women since 2008.</p>
+                    <p class="hindi">2008 से सुरुचिपूर्ण महिलाओं के लिए सुंदर परिधान बनाना।</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="english">Quick Links</h3>
+                    <h3 class="hindi">त्वरित लिंक</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="english">Home</a><a href="index.html" class="hindi">होम</a></li>
+                        <li><a href="about.html" class="english">About Us</a><a href="about.html" class="hindi">हमारे बारे में</a></li>
+                        <li><a href="services.html" class="english">Services</a><a href="services.html" class="hindi">सेवाएं</a></li>
+                        <li><a href="gallery.html" class="english">Gallery</a><a href="gallery.html" class="hindi">गैलरी</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="english">Contact Info</h3>
+                    <h3 class="hindi">संपर्क जानकारी</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="english">Krishna Nagar Basharatpur Gorakhpur UP 273004</span><span class="hindi">Krishna Nagar Basharatpur Gorakhpur UP 273004</span></li>
+                        <li><i class="fas fa-phone"></i> +91 7518007867</li>
+                        <li><i class="fas fa-envelope"></i> maaladiestailor1@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> <span class="english">Mon-Sat: 10AM-7PM</span><span class="hindi">सोम-शनि: सुबह 10-शाम 7</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Maa Ladies Tail

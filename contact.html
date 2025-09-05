@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Maa Ladies Tailor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- SheetJS Library for Excel Export -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-pink: #f8d7da;
+            --light-pink: #f9eef0;
+            --dark-pink: #d8a1b6;
+            --purple: #b28bcf;
+            --pastel-purple: #e6e6fa;
+            --gold: #d4af37;
+            --dark-text: #4a3c3c;
+            --light-text: #7c6f6f;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: var(--light-pink);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(178, 139, 207, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--purple));
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-btn {
+            background: var(--white);
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-left: 10px;
+        }
+
+        .logo-icon {
+            color: var(--gold);
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--purple);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--purple);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--pastel-purple);
+            padding: 15px 0;
+            margin-top: 80px;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-link {
+            text-decoration: none;
+            color: var(--purple);
+            font-weight: 500;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 10px;
+            color: var(--purple);
+        }
+
+        .breadcrumb-current {
+            color: var(--dark-text);
+        }
+
+        /* Contact Hero */
+        .contact-hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(248, 215, 218, 0.8)), url('https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3') center/cover no-repeat;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .contact-hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--purple);
+        }
+
+        /* Contact Content */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--purple);
+            font-size: 20px;
+        }
+
+        .info-details h3 {
+            margin-bottom: 5px;
+            color: var(--purple);
+        }
+
+        .info-details p {
+            color: var(--light-text);
+        }
+
+        .social-contact {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-contact a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--light-pink);
+            color: var(--purple);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-contact a:hover {
+            background: var(--purple);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(178, 139, 207, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Map Section */
+        .map-section {
+            background-color: var(--pastel-purple);
+            border-radius: 30px;
+            padding: 80px 0;
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Business Hours */
+        .business-hours {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+
+        .hours-title {
+            color: var(--purple);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 500;
+        }
+
+        .time {
+            color: var(--light-text);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: var(--white);
+            border-radius: 30px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            background: var(--light-pink);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--pastel-purple);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 60px 0 30px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-pink);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            color: var(--purple);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-hero-title {
+                font-size: 2.8rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background: var(--white);
+                width: 100%;
+                flex-direction: column;
+                padding: 30px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .contact-hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .contact-hero {
+                padding: 80px 0;
+            }
+
+            .contact-hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .info-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Hindi Language Support */
+        .hindi {
+            display: none;
+        }
+
+        .language-hindi .hindi {
+            display: block;
+        }
+
+        .language-hindi .english {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn" id="languageToggle">हिंदी</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-vest logo-icon"></i>
+                <span class="logo-text">Maa Ladies Tailor</span>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="index.html" class="breadcrumb-link english">Home</a>
+            <a href="index.html" class="breadcrumb-link hindi">होम</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current english">Contact</span>
+            <span class="breadcrumb-current hindi">संपर्क</span>
+        </div>
+    </div>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1 class="contact-hero-title english">Get In Touch</h1>
+            <h1 class="contact-hero-title hindi">संपर्क करें</h1>
+
+            <p class="hero-subtitle english">We'd love to hear from you. Let's create something beautiful together.</p>
+            <p class="hero-subtitle hindi">हम आपसे सुनना पसंद करेंगे। आइए मिलकर कुछ खूबसूरत बनाएं।</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2 class="section-title english">Contact Information</h2>
+                    <h2 class="section-title hindi">संपर्क जानकारी</h2>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3 class="english">Our Location</h3>
+                            <h3 class="hindi">हमारा स्थान</h3>
+                            <p class="english">Krishna Nagar Basharatpur </p>
+                            <p class="hindi">Krishna Nagar Basharatpur</p>
+                            <p class="english">Gorakhpur UP 273004</p>
+                            <p class="hindi">Gorakhpur UP 273004</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3 class="english">Phone Number</h3>
+                            <h3 class="hindi">फोन नंबर</h3>
+                            <p>+91 75180 07867</p>
+                            <div class="social-contact">
+                                <a href="tel:+917518007867" title="Call Us">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                                <a href="https://wa.me/7518007867" title="Message on WhatsApp" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3 class="english">Email Address</h3>
+                            <h3 class="hindi">ईमेल पता</h3>
+                            <p>maaladiestailor1@gmail.com</p>
+                            <a href="mailto:maaladiestailor1@gmail.com" class="btn" style="margin-top: 10px;">
+                                <span class="english">Send Email</span>
+                                <span class="hindi">ईमेल भेजें</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-details">
+                            <h3 class="english">Business Hours</h3>
+                            <h3 class="hindi">व्यवसाय के घंटे</h3>
+                            <p class="english">Monday - Saturday: 10:00 AM - 7:00 PM</p>
+                            <p class="hindi">सोमवार - शनिवार: सुबह 10:00 - शाम 7:00</p>
+                            <p class="english">Sunday: Closed</p>
+                            <p class="hindi">रविवार: बंद</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2 class="section-title english">Send Us a Message</h2>
+                    <h2 class="section-title hindi">हमें एक संदेश भेजें</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="english">Your Name</label>
+                            <label for="name" class="hindi">आपका नाम</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="english">Email Address</label>
+                            <label for="email" class="hindi">ईमेल पता</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="english">Phone Number</label>
+                            <label for="phone" class="hindi">फोन नंबर</label>
+                            <input type="tel" id="phone" name="phone" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service" class="english">Service Interested In</label>
+                            <label for="service" class="hindi">रुचि वाली सेवा</label>
+                            <select id="service" name="service" class="form-control">
+                                <option value="" class="english">Select a service</option>
+                                <option value="" class="hindi">एक सेवा चुनें</option>
+                                <option value="blouse" class="english">Blouse Stitching</option>
+                                <option value="blouse" class="hindi">ब्लाउज सिलाई</option>
+                                <option value="lehenga" class="english">Lehenga Designing</option>
+                                <option value="lehenga" class="hindi">लेहंगा डिजाइनिंग</option>
+                                <option value="suit" class="english">Salwar Suit Tailoring</option>
+                                <option value="suit" class="hindi">सलवार सूट सिलाई</option>
+                                <option value="alteration" class="english">Alterations</option>
+                                <option value="alteration" class="hindi">परिवर्तन</option>
+                                <option value="other" class="english">Other</option>
+                                <option value="other" class="hindi">अन्य</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="english">Your Message</label>
+                            <label for="message" class="hindi">आपका संदेश</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn">
+                            <span class="english">Send Message</span>
+                            <span class="hindi">संदेश भेजें</span>
+                        </button>
+                    </form>
+
+                    <script>
+                        document.getElementById("contactForm").addEventListener("submit", function (e) {
+                            e.preventDefault();
+
+                            const data = {
+                                name: this.name.value,
+                                email: this.email.value,
+                                phone: this.phone.value,
+                                service: this.service.value,
+                                message: this.message.value
+                            };
+
+                            fetch("https://script.google.com/macros/s/AKfycbx-JLNFtXJcOcGq9DBl4iqBjCeqolGMKLJH2KRn37CPYoxmkYtXLDhpLZ_voF26K-Jhdw/exec", {  // Replace with your script link
+                                method: "POST",
+                                body: JSON.stringify(data)
+                            })
+                                .then(res => res.text())
+                                .then(msg => {
+                                    alert("✅ Your message has been sent successfully!");
+                                    this.reset();
+                                })
+                                .catch(err => alert("❌ Error: " + err));
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title english">Find Our Shop</h2>
+            <h2 class="section-title hindi">हमारी दुकान खोजें</h2>
+
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1780.9754398343953!2d83.37516127519977!3d26.77783566236728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1757018025125!5m2!1sen!2sin"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq">
+        <div class="container">
+            <h2 class="section-title english">Frequently Asked Questions</h2>
+            <h2 class="section-title hindi">अक्सर पूछे जाने वाले प्रश्न</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="english">Do I need to make an appointment for consultation?</span>
+                        <span class="hindi">क्या मुझे परामर्श के लिए अपॉइंटमेंट लेना होगा?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="english">While walk-ins are welcome, we recommend scheduling an appointment to ensure
+                            we can give you our undivided attention. You can book an appointment by calling us or using
+                            the contact form.</p>
+                        <p class="hindi">हालांकि वॉक-इन का स्वागत है, हम अपॉइंटमेंट शेड्यूल करने की सलाह देते हैं ताकि
+                            हम आपको अपना पूरा ध्यान दे सकें। आप हमें कॉल करके या संपर्क फॉर्म का उपयोग करके अपॉइंटमेंट
+                            बुक कर सकते हैं।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="english">What should I bring to my first appointment?</span>
+                        <span class="hindi">मुझे अपनी पहली अपॉइंटमेंट में क्या लाना चाहिए?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="english">Please bring any inspiration images, fabric you'd like to use, and any
+                            garments you'd like us to reference for fit or style. If you have specific measurements from
+                            previous tailoring, those would be helpful as well.</p>
+                        <p class="hindi">कृपया कोई भी inspiration images, कपड़ा जिसे आप उपयोग करना चाहते हैं, और कोई भी
+                            garments लाएं जिन्हें आप fit या style के लिए reference के रूप में उपयोग करना चाहते हैं। यदि
+                            आपके पास पिछली tailoring से specific measurements हैं, तो वे भी helpful होंगे।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="english">How do I schedule a fitting appointment?</span>
+                        <span class="hindi">मैं फिटिंग अपॉइंटमेंट कैसे शेड्यूल करूं?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="english">We will schedule your fitting appointment at the time of your initial
+                            consultation. Typically, fittings are scheduled 1-2 weeks after taking measurements,
+                            depending on the complexity of the garment.</p>
+                        <p class="hindi">हम आपकी फिटिंग अपॉइंटमेंट आपकी initial consultation के समय शेड्यूल करेंगे।
+                            आमतौर पर, फिटिंگ measurements लेने के 1-2 सप्ताह बाद शेड्यूल की जाती है, जो garment की
+                            complexity पर निर्भर करता है।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="english">Maa Ladies Tailor</h3>
+                    <h3 class="hindi">माँ लेडीज टेलर</h3>
+                    <p class="english">Creating beautiful garments for elegant women since 2008.</p>
+                    <p class="hindi">2008 से सुरुचिपूर्ण महिलाओं के लिए सुंदर परिधान बनाना।</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="english">Quick Links</h3>
+                    <h3 class="hindi">त्वरित लिंक</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="english">Home</a><a href="index.html" class="hindi">होम</a>
+                        </li>
+                        <li><a href="about.html" class="english">About Us</a><a href="about.html" class="hindi">हमारे
+                                बारे में</a></li>
+                        <li><a href="services.html" class="english">Services</a><a href="services.html"
+                                class="hindi">सेवाएं</a></li>
+                        <li><a href="gallery.html" class="english">Gallery</a><a href="gallery.html"
+                                class="hindi">गैलरी</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column" style="color:black;">
+                    <h3 class="english">Contact Info</h3>
+                    <h3 class="hindi">संपर्क जानकारी</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="english">Krishna Nagar Basharatpur
+                                Gorakhpur UP 273004</span><span class="hindi">Krishna Nagar Basharatpur Gorakhpur UP
+                                273004 </span></li>
+                        <li><i class="fas fa-phone"></i> +91 7518007867</li>
+                        <li><i class="fas fa-envelope"></i> maaladiestailor1@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> <span class="english">Mon-Sat: 10AM-7PM</span><span
+                                class="hindi">सोम-शनि: सुबह 10-शाम 7</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 Maa Ladies Tailor. <span class="english">All rights reserved.</span><span
+                        class="hindi">सर्वाधिकार सुरक्षित।</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/7518007867" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Language Toggle Functionality
+        document.getElementById('languageToggle').addEventListener('click', function () {
+            document.body.classList.toggle('language-hindi');
+
+            if (document.body.classList.contains('language-hindi')) {
+                this.textContent = 'English';
+            } else {
+                this.textContent = 'हिंदी';
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+
+                const icon = question.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+
+        // Form Submission with Excel Export
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toLocaleString()
+            };
+
+            // Save to localStorage (simulating database storage)
+            saveFormData(formData);
+
+            // Export to Excel
+            exportToExcel(formData);
+
+            // Show success message
+            alert('Thank you for your message! We will get back to you soon. Your data has been saved.');
+            this.reset();
+        });
+
+        //

@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Maa Ladies Tailor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-pink: #f8d7da;
+            --light-pink: #f9eef0;
+            --dark-pink: #d8a1b6;
+            --purple: #b28bcf;
+            --pastel-purple: #e6e6fa;
+            --gold: #d4af37;
+            --dark-text: #4a3c3c;
+            --light-text: #7c6f6f;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: var(--light-pink);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(178, 139, 207, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--purple));
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-btn {
+            background: var(--white);
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-left: 10px;
+        }
+
+        .logo-icon {
+            color: var(--gold);
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--purple);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--purple);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--pastel-purple);
+            padding: 15px 0;
+            margin-top: 80px;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-link {
+            text-decoration: none;
+            color: var(--purple);
+            font-weight: 500;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 10px;
+            color: var(--purple);
+        }
+
+        .breadcrumb-current {
+            color: var(--dark-text);
+        }
+
+        /* About Hero */
+        .about-hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(248, 215, 218, 0.8)), url('https://images.unsplash.com/photo-1591369822096-ffd140ec948a?ixlib=rb-4.0.3') center/cover no-repeat;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .about-hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--purple);
+        }
+
+        /* Story Section */
+        .story {
+            background-color: var(--white);
+            border-radius: 30px;
+        }
+
+        .story-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .story-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .story-text {
+            flex: 1;
+        }
+
+        .story-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--purple);
+        }
+
+        .story-description {
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        /* Values Section */
+        .values {
+            background-color: var(--pastel-purple);
+            border-radius: 30px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .value-icon {
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--purple);
+        }
+
+        .value-description {
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+
+        /* Team Section */
+        .team {
+            background-color: var(--white);
+            border-radius: 30px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: var(--light-pink);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 20px;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--purple);
+        }
+
+        .team-role {
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-description {
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--pastel-purple);
+            border-radius: 30px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            padding: 30px;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-text {
+            color: var(--light-text);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--purple);
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 60px;
+            color: var(--gold);
+            opacity: 0.2;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 60px 0 30px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-pink);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            color: var(--purple);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-hero-title {
+                font-size: 2.8rem;
+            }
+
+            .story-content {
+                flex-direction: column;
+            }
+
+            .story-image,
+            .story-text {
+                flex: none;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background: var(--white);
+                width: 100%;
+                flex-direction: column;
+                padding: 30px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .about-hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-hero {
+                padding: 80px 0;
+            }
+
+            .about-hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .story-title {
+                font-size: 2rem;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Hindi Language Support */
+        .hindi {
+            display: none;
+        }
+
+        .language-hindi .hindi {
+            display: block;
+        }
+
+        .language-hindi .english {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn" id="languageToggle">हिंदी</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-vest logo-icon"></i>
+                <span class="logo-text">Maa Ladies Tailor</span>
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="index.html" class="breadcrumb-link english">Home</a>
+            <a href="index.html" class="breadcrumb-link hindi">होम</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current english">About Us</span>
+            <span class="breadcrumb-current hindi">हमारे बारे में</span>
+        </div>
+    </div>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="about-hero-title english">Our Story</h1>
+            <h1 class="about-hero-title hindi">हमारी कहानी</h1>
+
+            <p class="hero-subtitle english">Discover the passion and craftsmanship behind Maa Ladies Tailor</p>
+            <p class="hero-subtitle hindi">माँ लेडीज टेलर के पीछे के जुनून और कारीगरी को खोजें</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="section story">
+        <div class="container">
+            <div class="story-content">
+                <div class="story-image">
+                    <img src="https://png.pngtree.com/png-vector/20190119/ourmid/pngtree-tailor-cartoon-cartoon-tailor-lovely-png-image_479114.png"
+                        alt="Tailor at work">
+                </div>
+
+                <div class="story-text">
+                    <h2 class="story-title english">How It All Began</h2>
+                    <h2 class="story-title hindi">यह सब कैसे शुरू हुआ</h2>
+
+                    <p class="story-description english">Maa Ladies Tailor was founded in 2008 by Mrs. Sunita Sharma, a
+                        master tailor with over 15 years of experience in the fashion industry. What started as a small
+                        home-based business has now grown into a renowned tailoring studio known for its exceptional
+                        craftsmanship and attention to detail.</p>
+                    <p class="story-description hindi">माँ लेडीज टेलर की स्थापना 2008 में श्रीमती सुनीता शर्मा ने की थी,
+                        जो फैशन उद्योग में 15 वर्षों से अधिक के अनुभव वाली एक मास्टर टेलर हैं। जो एक छोटे घर-आधारित
+                        व्यवसाय के रूप में शुरू हुआ, वह अब अपनी असाधारण कारीगरी और विस्तार पर ध्यान देने के लिए जानी
+                        जाने वाली एक प्रसिद्ध टेलरिंग स्टूडियो में विकसित हो गया है।</p>
+
+                    <p class="story-description english">Our mission is to provide women with beautifully tailored
+                        garments that enhance their natural beauty and reflect their personal style. We believe that
+                        every woman deserves to feel confident and elegant in her clothing.</p>
+                    <p class="story-description hindi">हमारा मिशन महिलाओं को खूबसूरती से तैयार किए गए परिधान प्रदान करना
+                        है जो उनकी प्राकृतिक सुंदरता को बढ़ाते हैं और उनकी व्यक्तिगत शैली को दर्शाते हैं। हम मानते हैं
+                        कि हर महिला अपने कपड़ों में आत्मविश्वासी और सुरुचिपूर्ण महसूस करने की हकदार है।</p>
+
+                    <a href="services.html" class="btn english">Our Services</a>
+                    <a href="services.html" class="btn hindi">हमारी सेवाएं</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section values">
+        <div class="container">
+            <h2 class="section-title english">Our Values</h2>
+            <h2 class="section-title hindi">हमारे मूल्य</h2>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-star value-icon"></i>
+                    <h3 class="value-title english">Quality Craftsmanship</h3>
+                    <h3 class="value-title hindi">गुणवत्ता कारीगरी</h3>
+                    <p class="value-description english">We take pride in our attention to detail and commitment to
+                        excellence in every stitch.</p>
+                    <p class="value-description hindi">हम हर स्टिच में विस्तार पर ध्यान और उत्कृष्टता के प्रति अपनी
+                        प्रतिबद्धता पर गर्व करते हैं।</p>
+                </div>
+
+                <div class="value-card">
+                    <i class="fas fa-heart value-icon"></i>
+                    <h3 class="value-title english">Personalized Service</h3>
+                    <h3 class="value-title hindi">व्यक्तिगत सेवा</h3>
+                    <p class="value-description english">We work closely with each client to create garments that
+                        reflect their unique style and preferences.</p>
+                    <p class="value-description hindi">हम प्रत्येक ग्राहक के साथ मिलकर काम करते हैं ताकि उनकी अनूठी शैली
+                        और प्राथमिकताओं को दर्शाने वाले परिधान बना सकें।</p>
+                </div>
+
+                <div class="value-card">
+                    <i class="fas fa-clock value-icon"></i>
+                    <h3 class="value-title english">Timely Delivery</h3>
+                    <h3 class="value-title hindi">समय पर वितरण</h3>
+                    <p class="value-description english">We understand the importance of deadlines and ensure your
+                        garments are ready when you need them.</p>
+                    <p class="value-description hindi">हम समय सीमा के महत्व को समझते हैं और यह सुनिश्चित करते हैं कि
+                        आपके परिधान आपकी आवश्यकता के समय तैयार हों।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team">
+        <div class="container">
+            <h2 class="section-title english">Meet Our Team</h2>
+            <h2 class="section-title hindi">हमारी टीम से मिलें</h2>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="/photoss/mummaimage.jpg" alt="Sunita Sharma" class="team-img">
+                    <div class="team-info">
+                        <h3 class="team-name">Arundhati Singh</h3>
+                        <p class="team-role english">Founder & Master Tailor</p>
+                        <p class="team-role hindi">संस्थापक और मास्टर टेलर</p>
+                        <p class="team-description english">With over 20 years of experience, Sunita specializes in
+                            bridal wear and traditional Indian outfits.</p>
+                        <p class="team-description hindi">20 वर्षों से अधिक के अनुभव के साथ, सुनीता ब्राइडल वियर और
+                            पारंपरिक भारतीय परिधानों में माहिर हैं।</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1581349437898-cebbe9831942?ixlib=rb-4.0.3"
+                        alt="Priya Patel" class="team-img">
+                    <div class="team-info">
+                        <h3 class="team-name">Priya Patel</h3>
+                        <p class="team-role english">Design Consultant</p>
+                        <p class="team-role hindi">डिजाइन सलाहकार</p>
+                        <p class="team-description english">Priya helps clients choose fabrics and designs that
+                            complement their body type and personal style.</p>
+                        <p class="team-description hindi">प्रिया ग्राहकों को ऐसे fabrics और designs चुनने में मदद करती
+                            हैं जो उनके body type और personal style को complement करते हैं।</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3"
+                        alt="Anjali Mehta" class="team-img">
+                    <div class="team-info">
+                        <h3 class="team-name">Anjali Mehta</h3>
+                        <p class="team-role english">Embroidery Specialist</p>
+                        <p class="team-role hindi">कढ़ाई विशेषज्ञ</p>
+                        <p class="team-description english">Anjali is renowned for her intricate hand embroidery work
+                            that adds elegance to any garment.</p>
+                        <p class="team-description hindi">अंजलि अपनी जटिल हाथ की कढ़ाई के काम के लिए प्रसिद्ध हैं जो
+                            किसी भी परिधान में elegance जोड़ती है।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title english">What Our Clients Say</h2>
+            <h2 class="section-title hindi">हमारे ग्राहक क्या कहते हैं</h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text english">"I've been getting my blouses stitched from Maa Ladies Tailor
+                        for years. The fit is always perfect, and the craftsmanship is exceptional."</p>
+                    <p class="testimonial-text hindi">"मैं years से माँ लेडीज टेलर से अपने ब्लाउज सिलवा रही हूं। फिट
+                        हमेशा perfect होता है, और craftsmanship exceptional होती है।"</p>
+                    <div class="testimonial-author">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRtNd8TSi0RwEk6HAwjVNymYGiyk43tPRrEw&s"
+                            alt="Client" class="testimonial-avatar">
+                        <div>
+                            <h4 class="testimonial-name">Priya Sharma</h4>
+                            <p class="testimonial-role english">Regular Client</p>
+                            <p class="testimonial-role hindi">नियमित ग्राहक</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text english">"Sunita ji designed my wedding lehenga, and it was absolutely
+                        stunning. The attention to detail and personalized service made the experience wonderful."</p>
+                    <p class="testimonial-text hindi">"सुनीता जी ने मेरे wedding lehenga को design किया, और यह
+                        absolutely stunning था। विस्तार पर ध्यान और personalized service ने experience को wonderful बना
+                        दिया।"</p>
+                    <div class="testimonial-author">
+                        <img src="data:image/png;base64,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"
+                            alt="Client" class="testimonial-avatar">
+                        <div>
+                            <h4 class="testimonial-name">Neha Singh</h4>
+                            <p class="testimonial-role english">Bride</p>
+                            <p class="testimonial-role hindi">दुल्हन</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text english">"The alterations service is fantastic! They transformed my
+                        mother's old sari into a beautiful contemporary outfit that she now loves wearing."</p>
+                    <p class="testimonial-text hindi">"alterations service fantastic है! उन्होंने मेरी mother's old sari
+                        को एक beautiful contemporary outfit में बदल दिया जिसे अब वह पहनना पसंद करती हैं।"</p>
+                    <div class="testimonial-author">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR32yWOaPZbClPB4bMln2OUpNQjeYOiid_2Ug&s"
+                            alt="Client" class="testimonial-avatar">
+                        <div>
+                            <h4 class="testimonial-name">Sneha Pandey</h4>
+                            <p class="testimonial-role english">Satisfied Customer</p>
+                            <p class="testimonial-role hindi">संतुष्ट ग्राहक</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="english">Maa Ladies Tailor</h3>
+                    <h3 class="hindi">माँ लेडीज टेलर</h3>
+                    <p class="english">Creating beautiful garments for elegant women since 2008.</p>
+                    <p class="hindi">2008 से सुरुचिपूर्ण महिलाओं के लिए सुंदर परिधान बनाना।</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="english">Quick Links</h3>
+                    <h3 class="hindi">त्वरित लिंक</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="english">Home</a><a href="index.html" class="hindi">होम</a>
+                        </li>
+                        <li><a href="about.html" class="english">About Us</a><a href="about.html" class="hindi">हमारे
+                                बारे में</a></li>
+                        <li><a href="services.html" class="english">Services</a><a href="services.html"
+                                class="hindi">सेवाएं</a></li>
+                        <li><a href="gallery.html" class="english">Gallery</a><a href="gallery.html"
+                                class="hindi">गैलरी</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3 class="english">Contact Info</h3>
+                    <h3 class="hindi">संपर्क जानकारी</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="english">Krishna Nagar Basharatpur
+                                Gorakhpur UP 273004</span><span class="hindi">Krishna Nagar Basharatpur Gorakhpur UP
+                                273004</span></li>
+                        <li><i class="fas fa-phone"></i> +91 7518007867</li>
+                        <li><i class="fas fa-envelope"></i> maaladiestailor1@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> <span class="english">Mon-Sat: 10AM-7PM</span><span
+                                class="hindi">सोम-शनि: सुबह 10-शाम 7</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 Maa Ladies Tailor. <span class="english">All rights reserved.</span><span
+                        class="hindi">सर्वाधिकार सुरक्षित।</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Language Toggle Functionality
+        document.getElementById('languageToggle').addEventListener('click', function () {
+            document.body.classList.toggle('language-hindi');
+
+            if (document.body.classList.contains('language-hindi')) {
+                this.textContent = 'English';
+            } else {
+                this.textContent = 'हिंदी';
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('hamburger').addEventListener('click', function () {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#    

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Maa Ladies Tailor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-pink: #f8d7da;
+            --light-pink: #f9eef0;
+            --dark-pink: #d8a1b6;
+            --purple: #b28bcf;
+            --pastel-purple: #e6e6fa;
+            --gold: #d4af37;
+            --dark-text: #4a3c3c;
+            --light-text: #7c6f6f;
+            --white: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: var(--light-pink);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(178, 139, 207, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--purple));
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-btn {
+            background: var(--white);
+            color: var(--purple);
+            border: 2px solid var(--purple);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            background: var(--purple);
+            color: var(--white);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--purple);
+            margin-left: 10px;
+        }
+
+        .logo-icon {
+            color: var(--gold);
+            font-size: 32px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--purple);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--purple);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--purple);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--pastel-purple);
+            padding: 15px 0;
+            margin-top: 80px;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-link {
+            text-decoration: none;
+            color: var(--purple);
+            font-weight: 500;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 10px;
+            color: var(--purple);
+        }
+
+        .breadcrumb-current {
+            color: var(--dark-text);
+        }
+
+        /* Services Hero */
+        .services-hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(248, 215, 218, 0.8)), url('https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3') center/cover no-repeat;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .services-hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--purple);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--purple);
+        }
+
+        .service-description {
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: var(--purple);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Process Section */
+        .process {
+            background-color: var(--pastel-purple);
+            border-radius: 30px;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+            z-index: 1;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--purple);
+            margin: 0 auto 20px;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--purple);
+        }
+
+        .step-description {
+            color: var(--light-text);
+            padding: 0 15px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: var(--white);
+            border-radius: 30px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            background: var(--light-pink);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--pastel-purple);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 300px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            text-align: center;
+            padding: 80px 0;
+            border-radius: 30px;
+        }
+
+        .cta-title {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-light {
+            background: var(--white);
+            color: var(--purple);
+        }
+
+        .btn-light:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--purple), var(--dark-pink));
+            color: var(--white);
+            padding: 60px 0 30px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-pink);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--gold);
+            font-size: 18px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            color: var(--purple);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5);
+            z-index: 100;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128c7e;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .services-hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .process-step {
+                flex: 0 0 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background: var(--white);
+                width: 100%;
+                flex-direction: column;
+                padding: 30px 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .services-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .process-step {
+                flex: 0 0 100%;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .services-hero {
+                padding: 80px 0;
+            }
+            
+            .services-hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                padding: 20px 15px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Hindi Language Support */
+        .hindi {
+            display: none;
+        }
+
+        .language-hindi .hindi {
+            display: block;
+        }
+
+        .language-hindi .english {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn" id="languageToggle">हिंदी</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-vest logo-icon"></i>
+                <span class="logo-text">Maa Ladies Tailor</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                    <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="index.html" class="breadcrumb-link english">Home</a>
+            <a href="index.html" class="breadcrumb-link hindi">होम</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current english">Services</span>
+            <span class="breadcrumb-current hindi">सेवाएं</span>
+        </div>
+    </div>
+
+    <!-- Services Hero -->
+    <section class="services-hero">
+        <div class="container">
+            <h1 class="services-hero-title english">Our Tailoring Services</h1>
+            <h1 class="services-hero-title hindi">हमारी सिलाई सेवाएं</h1>
+            
+            <p class="hero-subtitle english">Exquisite craftsmanship for every occasion</p>
+            <p class="hero-subtitle hindi">हर अवसर के लिए उत्कृष्ट कारीगरी</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title english">What We Offer</h2>
+            <h2 class="section-title hindi">हम क्या पेशकश करते हैं</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-tshirt service-icon"></i>
+                    <h3 class="service-title english">Blouse Stitching</h3>
+                    <h3 class="service-title hindi">ब्लाउज सिलाई</h3>
+                    <p class="service-description english">Custom blouses with perfect fit, various necklines, and sleeve designs.</p>
+                    <p class="service-description hindi">परफेक्ट फिट, विभिन्न नेकलाइन और स्लीव डिजाइन के साथ कस्टम ब्लाउज।</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span class="english">Perfect fitting</span><span class="hindi">बिल्कुल सही फिटिंग</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Multiple designs</span><span class="hindi">कई डिजाइन</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Embellishment options</span><span class="hindi">सजावट के विकल्प</span></li>
+                    </ul>
+                    <p class="service-price english">Starting at ₹800</p>
+                    <p class="service-price hindi">₹800 से शुरू</p>
+                    <a href="https://wa.me/7518007867" class="btn english">Get Quote</a>
+                    <a href="https://wa.me/7518007867" class="btn hindi">कीमत पूछें</a>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-ring service-icon"></i>
+                    <h3 class="service-title english">Lehenga Designing</h3>
+                    <h3 class="service-title hindi">लेहंगा डिजाइनिंग</h3>
+                    <p class="service-description english">Beautiful bridal and party lehengas with intricate work.</p>
+                    <p class="service-description hindi">जटिल काम के साथ सुंदर ब्राइडल और पार्टी लहंगे।</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span class="english">Bridal collections</span><span class="hindi">विवाह संग्रह</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Custom embroidery</span><span class="hindi">कस्टम कढ़ाई</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Premium fabrics</span><span class="hindi">प्रीमियम कपड़े</span></li>
+                    </ul>
+                    <p class="service-price english">Starting at ₹15,000</p>
+                    <p class="service-price hindi">₹15,000 से शुरू</p>
+                    <a href="https://wa.me/7518007867" class="btn english">Get Quote</a>
+                    <a href="https://wa.me/7518007867" class="btn hindi">कीमत पूछें</a>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-vest service-icon"></i>
+                    <h3 class="service-title english">Salwar Suit Tailoring</h3>
+                    <h3 class="service-title hindi">सलवार सूट सिलाई</h3>
+                    <p class="service-description english">Elegant salwar suits with perfect fitting and contemporary designs.</p>
+                    <p class="service-description hindi">परफेक्ट फिटिंग और समकालीन डिजाइनों के साथ एलिगेंट सलवार सूट।</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span class="english">Anarkali suits</span><span class="hindi">अनारकली सूट</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Straight cut suits</span><span class="hindi">सीधे कट के सूट</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Patiala suits</span><span class="hindi">पटियाला सूट</span></li>
+                    </ul>
+                    <p class="service-price english">Starting at ₹2,500</p>
+                    <p class="service-price hindi">₹2,500 से शुरू</p>
+                    <a href="https://wa.me/7518007867" class="btn english">Get Quote</a>
+                    <a href="https://wa.me/7518007867" class="btn hindi">कीमत पूछें</a>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-cut service-icon"></i>
+                    <h3 class="service-title english">Alterations</h3>
+                    <h3 class="service-title hindi">परिवर्तन</h3>
+                    <p class="service-description english">Professional alterations for perfect fit of any outfit.</p>
+                    <p class="service-description hindi">किसी भी आउटफिट के परफेक्ट फिट के लिए पेशेवर alterations।</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span class="english">Resizing</span><span class="hindi">आकार बदलना</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Hemming</span><span class="hindi">हेमिंग</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Repairs</span><span class="hindi">मरम्मत</span></li>
+                    </ul>
+                    <p class="service-price english">Starting at ₹300</p>
+                    <p class="service-price hindi">₹300 से शुरू</p>
+                    <a href="https://wa.me/7518007867" class="btn english">Get Quote</a>
+                    <a href="https://wa.me/7518007867" class="btn hindi">कीमत पूछें</a>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-gem service-icon"></i>
+                    <h3 class="service-title english">Saree Blouse Design</h3>
+                    <h3 class="service-title hindi">साड़ी ब्लाउज डिजाइन</h3>
+                    <p class="service-description english">Designer blouses to complement your saree perfectly.</p>
+                    <p class="service-description hindi">आपकी साड़ी को परफेक्टली complement करने के लिए डिजाइनर ब्लाउज।</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span class="english">Back designs</span><span class="hindi">पीछे के डिजाइन</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Neck patterns</span><span class="hindi">गर्दन के पैटर्न</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Sleeve variations</span><span class="hindi">स्लीव variations</span></li>
+                    </ul>
+                    <p class="service-price english">Starting at ₹1,200</p>
+                    <p class="service-price hindi">₹1,200 से शुरू</p>
+                    <a href="https://wa.me/7518007867" class="btn english">Get Quote</a>
+                    <a href="https://wa.me/7518007867" class="btn hindi">कीमत पूछें</a>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-crown service-icon"></i>
+                    <h3 class="service-title english">Bridal Wear</h3>
+                    <h3 class="service-title hindi">विवाह परिधान</h3>
+                    <p class="service-description english">Exquisite bridal wear with intricate embroidery and detailing.</p>
+                    <p class="service-description hindi">जटिल कढ़ाई और विस्तार के साथ उत्कृष्ट विवाह परिधान।</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> <span class="english">Custom designs</span><span class="hindi">कस्टम डिजाइन</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Hand embroidery</span><span class="hindi">हाथ की कढ़ाई</span></li>
+                        <li><i class="fas fa-check"></i> <span class="english">Premium materials</span><span class="hindi">प्रीमियम सामग्री</span></li>
+                    </ul>
+                    <p class="service-price english">Starting at ₹25,000</p>
+                    <p class="service-price hindi">₹25,000 से शुरू</p>
+                    <a href="https://wa.me/7518007867" class="btn english">Get Quote</a>
+                    <a href="https://wa.me/7518007867" class="btn hindi">कीमत पूछें</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section process">
+        <div class="container">
+            <h2 class="section-title english">Our Process</h2>
+            <h2 class="section-title hindi">हमारी प्रक्रिया</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title english">Consultation</h3>
+                    <h3 class="step-title hindi">परामर्श</h3>
+                    <p class="step-description english">Discuss your requirements and design preferences.</p>
+                    <p class="step-description hindi">अपनी आवश्यकताओं और डिजाइन preferences पर चर्चा करें।</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title english">Measurement</h3>
+                    <h3 class="step-title hindi">माप</h3>
+                    <p class="step-description english">Precise measurements for perfect fitting.</p>
+                    <p class="step-description hindi">बिल्कुल सही फिटिंग के लिए सटीक माप।</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title english">Fabric Selection</h3>
+                    <h3 class="step-title hindi">कपड़ा चयन</h3>
+                    <p class="step-description english">Choose from a wide range of quality fabrics.</p>
+                    <p class="step-description hindi">गुणवत्ता वाले कपड़ों की wide range में से चुनें।</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title english">Stitching</h3>
+                    <h3 class="step-title hindi">सिलाई</h3>
+                    <p class="step-description english">Expert craftsmanship with attention to detail.</p>
+                    <p class="step-description hindi">विस्तार पर ध्यान देने के साथ विशेषज्ञ कारीगरी।</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title english">Fitting</h3>
+                    <h3 class="step-title hindi">फिटिंग</h3>
+                    <p class="step-description english">Try on and make any necessary adjustments.</p>
+                    <p class="step-description hindi">पहन कर देखें और आवश्यक adjustments करें।</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title english">Delivery</h3>
+                    <h3 class="step-title hindi">वितरण</h3>
+                    <p class="step-description english">Receive your perfectly tailored garment.</p>
+                    <p class="step-description hindi">अपना बिल्कुल सही tailored परिधान प्राप्त करें।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq">
+        <div class="container">
+            <h2 class="section-title english">Frequently Asked Questions</h2>
+            <h2 class="section-title hindi">अक्सर पूछे जाने वाले प्रश्न</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="english">How long does it take to stitch a blouse?</span>
+                        <span class="hindi">एक ब्लाउज सिलने में कितना समय लगता है?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="english">Typically, a basic blouse takes 3-4 days. Designer blouses with intricate work may take 7-10 days depending on the complexity.</p>
+                        <p class="hindi">आमतौर पर, एक बेसिक ब्लाउज में 3-4 दिन लगते हैं। जटिल काम वाले डिजाइनर ब्लाउज में जटिलता के आधार पर 7-10 दिन लग सकते हैं।</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="english">Do you provide fabric or should I bring my own?</span>
+                        <span class="hindi">क्या आप कपड़ा उपलब्ध कराते हैं या मुझे अपना खुद का लाना चाहिए?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="english">We have a wide selection of fabrics available for purchase, or you're welcome to bring your own fabric if you prefer.</p>
+                        <p class="hindi">हमारे पास खरीद के लिए कपड़ों का wide selection उपलब्ध है, या यदि आप prefer करते हैं तो आप अपना खुद का कपड़ा लाने के लिए welcome हैं।</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="english">Can you replicate a design from a picture?</span>
+                        <span class="hindi">क्या आप किसी तस्वीर से डिजाइन की नकल कर सकते हैं?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="english">Yes, we can recreate designs from pictures. Bring the image during your consultation and we'll discuss how to best execute it.</p>
+                        <p class="hindi">हां, हम तस्वीरों से डिजाइनों को फिर से बना सकते हैं। अपने consultation के दौरान image लाएं और हम चर्चा करेंगे कि इसे best कैसे execute किया जाए।</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span class="english">What is your pricing structure?</span>
+                        <span class="hindi">आपकी pricing structure क्या है?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="english">Pricing depends on the garment type, fabric, and complexity of work. Basic blouses start at ₹800, while bridal wear begins at ₹25,000.</p>
+                        <p class="hindi">मूल्य निर्धारण garment type, कपड़े और काम की जटिलता पर निर्भर करता है। बेसिक ब्लाउज ₹800 से शुरू होते हैं, जबकि bridal wear ₹25,000 से शुरू होता है।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title english">Ready to Get Started?</h2>
+            <h2 class="cta-title hindi">शुरू करने के लिए तैयार हैं?</h2>
+            
+            <p class="cta-text english">Book a consultation with our master tailor to discuss your design ideas and get a personalized quote.</p>
+            <p class="cta-text hindi">अपने design ideas पर चर्चा करने और personalized quote प्राप्त करने के लिए हमारे master tailor के साथ consultation बुक करें।</p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/7518007867" class="btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="english">Message on WhatsApp</span>
+                    <span class="hindi">WhatsApp पर संदेश भेजें</span>
+                </a>
+                <a href="tel:+9175180007867" class="btn btn-light">
+                    <i class="fas fa-phone"></i>
+                    <span class="english">Call Now</span>
+                    <span class="hindi">अभी कॉल करें</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="english">Maa Ladies Tailor</h3>
+                    <h3 class="hindi">माँ लेडीज टेलर</h3>
+                    <p class="english">Creating beautiful garments for elegant women since 2008.</p>
+                    <p class="hindi">2008 से सुरुचिपूर्ण महिलाओं के लिए सुंदर परिधान बनाना।</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="english">Quick Links</h3>
+                    <h3 class="hindi">त्वरित लिंक</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="english">Home</a><a href="index.html" class="hindi">होम</a></li>
+                        <li><a href="about.html" class="english">About Us</a><a href="about.html" class="hindi">हमारे बारे में</a></li>
+                        <li><a href="services.html" class="english">Services</a><a href="services.html" class="hindi">सेवाएं</a></li>
+                        <li><a href="gallery.html" class="english">Gallery</a><a href="gallery.html" class="hindi">गैलरी</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="english">Contact Info</h3>
+                    <h3 class="hindi">संपर्क जानकारी</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="english">Krishna Nagar Basharatpur Gorakhpur UP 273004</span><span class="hindi">Krishna Nagar Basharatpur Gorakhpur UP 273004</span></li>
+                        <li><i class="fas fa-phone"></i> +91 7518007867</li>
+                        <li><i class="fas fa-envelope"></i> maaladiestailor1@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> <span class="english">Mon-Sat: 10AM-7PM</span><span class="hindi">सोम-शनि: सुबह 10-शाम 7</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Maa Ladies Tailor. <span class="english">All rights reserved.</span><span class="hindi">सर्वाधिकार सुरक्षित।</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Language Toggle Functionality
+        document.getElementById('languageToggle').addEventListener('click', function() {
+            document.body.classList.toggle('language-hindi');
+            
+            if (document.body.classList.contains('language-hindi')) {
+                this.textContent = 'English';
+            } else {
+                this.textContent = 'हिंदी';
+            }
+        });
+        
+        // Mobile Menu Toggle
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                
+                const icon = question.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
